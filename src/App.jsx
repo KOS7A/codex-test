@@ -53,6 +53,25 @@ const superannuation = [
   },
 ];
 
+const creditCards = [
+  {
+    name: "Rewards Platinum",
+    number: "•••• 5521",
+    balance: 2240.35,
+    limit: 8500,
+    dueDate: "05 Nov 2024",
+    status: "Autopay on",
+  },
+  {
+    name: "Everyday Low Rate",
+    number: "•••• 4419",
+    balance: 890.12,
+    limit: 4000,
+    dueDate: "18 Nov 2024",
+    status: "Manual payment",
+  },
+];
+
 const currency = (value) =>
   value.toLocaleString("en-AU", {
     style: "currency",
@@ -202,6 +221,43 @@ export default function App() {
               <div className="card-footer">
                 <button className="primary small">Manage investment</button>
                 <button className="ghost small">View statements</button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-header">
+          <div>
+            <h2>Credit cards</h2>
+            <p>Track balances, limits, and upcoming repayments.</p>
+          </div>
+          <button className="ghost">Pay card</button>
+        </div>
+        <div className="card-grid">
+          {creditCards.map((card) => (
+            <article className="card" key={card.number}>
+              <div className="card-header">
+                <div>
+                  <h3>{card.name}</h3>
+                  <p className="muted">{card.number}</p>
+                </div>
+                <span className="pill">{card.status}</span>
+              </div>
+              <div className="card-body">
+                <div>
+                  <p className="label">Outstanding balance</p>
+                  <p className="value">{currency(card.balance)}</p>
+                </div>
+                <div>
+                  <p className="label">Credit limit</p>
+                  <p className="value">{currency(card.limit)}</p>
+                </div>
+              </div>
+              <div className="card-footer">
+                <p className="muted">Payment due {card.dueDate}</p>
+                <button className="primary small">Manage card</button>
               </div>
             </article>
           ))}
